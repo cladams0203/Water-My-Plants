@@ -32,8 +32,15 @@ public class Plant {
     public Plant() {
     }
 
-    public Plant(long plantid, String nickname, String species, String image, int frequency, User user) {
-        this.plantid = plantid;
+//    public Plant( String nickname, String species, String image, int frequency, User user) {
+//        this.nickname = nickname;
+//        this.species = species;
+//        this.image = image;
+//        this.frequency = frequency;
+//        this.user = user;
+//    }
+
+    public Plant(User user, String nickname, String species, String image, int frequency ) {
         this.nickname = nickname;
         this.species = species;
         this.image = image;

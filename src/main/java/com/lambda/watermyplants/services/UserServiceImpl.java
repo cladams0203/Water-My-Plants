@@ -1,6 +1,9 @@
 package com.lambda.watermyplants.services;
 
+import com.lambda.watermyplants.models.Plant;
+import com.lambda.watermyplants.models.Role;
 import com.lambda.watermyplants.models.User;
+import com.lambda.watermyplants.models.UserRoles;
 import com.lambda.watermyplants.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userrepos;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public List<User> findAll() {
@@ -60,7 +66,22 @@ public class UserServiceImpl implements UserService {
         }
         newUser.setUsername(user.getUsername().toLowerCase());
         newUser.setEmail(user.getEmail().toLowerCase());
-        return null;
+        newUser.setPasswordNoEncrypt(user.getPassword());
+
+        newUser.getRoles().clear();
+        for (UserRoles ur : user.getRoles()){
+            Role addRole = roleService.findByRoleId(ur.getRole().getRoleid());
+            newUser.getRoles().add(new UserRoles(newUser, addRole));
+        }
+        newUser.getUserplants().clear();
+        for (Plant p : user.getUserplants()){
+            newUser.getUserplants().add(new Plant(newUser,
+                    p.getNickname(),
+                    p.getSpecies(),
+                    p.getImage(),
+                    p.getFrequency()));
+        }
+        return userrepos.save(newUser);
     }
 
     @Override
