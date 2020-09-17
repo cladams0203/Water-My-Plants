@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         }
         newUser.setUsername(user.getUsername().toLowerCase());
         newUser.setEmail(user.getEmail().toLowerCase());
-
+        return null;
     }
 
     @Override
