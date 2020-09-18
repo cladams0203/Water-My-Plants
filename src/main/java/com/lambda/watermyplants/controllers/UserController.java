@@ -96,4 +96,10 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping(value = "/user/{userid}")
+    public ResponseEntity<?> adminUserDelete(@PathVariable long userid) {
+        userService.delete(userid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
