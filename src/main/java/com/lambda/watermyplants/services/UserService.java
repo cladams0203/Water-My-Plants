@@ -18,6 +18,8 @@ public interface UserService {
 
     User update(User user, long id);
 
+    List<User> findByNameContaining(String username);
+
     // Delete all records for seeding database
     public void deleteAll();
 }

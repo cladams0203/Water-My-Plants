@@ -40,6 +40,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/oauth/revoke-token",
                         "/logout")
                 .authenticated()
+                .antMatchers("/roles/**")
+                .hasAnyRole("ADMIN")
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(new OAuth2AccessDeniedHandler());

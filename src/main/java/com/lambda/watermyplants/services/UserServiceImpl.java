@@ -50,6 +50,11 @@ public class UserServiceImpl implements UserService {
         return foundUser;
     }
 
+    @Override
+    public List<User> findByNameContaining(String username) {
+        return userrepos.findByUsernameContainingIgnoreCase(username.toLowerCase());
+    }
+
     @Transactional
     @Override
     public void delete(long id) {
