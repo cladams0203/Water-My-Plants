@@ -47,12 +47,11 @@ public class User extends Auditable {
     public User() {
     }
 
-    public User(long userid, String username, @Email String email, String phone, String password) {
-        this.userid = userid;
-        this.username = username;
-        this.email = email;
+    public User( String username, @Email String email, String phone, String password) {
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
         this.phone = phone;
-        this.password = password;
     }
 
     public long getUserid() {
