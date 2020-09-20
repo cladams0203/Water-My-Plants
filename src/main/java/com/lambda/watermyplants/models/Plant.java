@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "plants")
+@JsonIgnoreProperties(value = {"user"})
 public class Plant extends Auditable {
 
     @Id
@@ -32,13 +33,6 @@ public class Plant extends Auditable {
     public Plant() {
     }
 
-//    public Plant( String nickname, String species, String image, int frequency, User user) {
-//        this.nickname = nickname;
-//        this.species = species;
-//        this.image = image;
-//        this.frequency = frequency;
-//        this.user = user;
-//    }
 
     public Plant(User user, String nickname, String species, String image, int frequency ) {
         this.nickname = nickname;
