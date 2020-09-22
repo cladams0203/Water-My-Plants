@@ -207,7 +207,6 @@ public class UserControllerTest {
     @Test
     @WithMockUser(username = "chris")
     public void updateUser() throws Exception{
-        System.out.println("Hey");
         String apiUrl = "/users/user";
 
         User u1 = new User();

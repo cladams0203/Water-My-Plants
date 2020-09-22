@@ -1,6 +1,7 @@
 package com.lambda.watermyplants.controllers;
 
 
+import com.lambda.watermyplants.models.Plant;
 import com.lambda.watermyplants.models.User;
 import com.lambda.watermyplants.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/users", produces = "application/json")
@@ -51,6 +53,14 @@ public class UserController {
         User currentUser = userService.findByName(authentication.getName());
         return new ResponseEntity<>(currentUser, HttpStatus.OK);
     }
+
+//    @GetMapping(value = "/plants", produces = "application/json")
+//    public ResponseEntity<?> getUserPlants(Authentication authentication){
+//        long userid = userService.findByName(authentication.getName()).getUserid();
+//        List<Plant> userPlants = userService.findPlantsByUserId(userid);
+//        return new ResponseEntity<>(userPlants, HttpStatus.OK);
+//    }
+
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(value = "/user", consumes = "application/json")

@@ -50,6 +50,11 @@ public class PlantServiceImpl implements PlantService {
     }
 
     @Override
+    public List<Plant> findByUserId(long id) {
+         return plantrepos.findPlantsByUserId(id);
+    }
+
+    @Override
     public List<Plant> findByNicknameContaining(String nickname) {
         return plantrepos.findByNicknameContainingIgnoreCase(nickname.toLowerCase());
     }

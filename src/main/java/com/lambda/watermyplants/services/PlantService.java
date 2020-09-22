@@ -15,6 +15,8 @@ public interface PlantService {
 
     Plant findByNickname(String nickname);
 
+    List<Plant> findByUserId(long id);
+
     List<Plant> findByNicknameContaining(String nickname);
 
     void delete(long id);
